@@ -23,8 +23,8 @@ detect_compose() {
     elif docker compose version &> /dev/null 2>&1; then
         COMPOSE_CMD="docker compose"
     else
-        echo -e "${RED}Error: Docker Compose not found${NC}"
-        exit 1
+        # Default to docker-compose and let it fail if not installed
+        COMPOSE_CMD="docker-compose"
     fi
 }
 
