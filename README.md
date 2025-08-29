@@ -66,7 +66,7 @@ Professional AI-powered log analysis platform with advanced security features, I
 - PostgreSQL 15+ (for local development)
 - Redis 7+ (for local development)
 
-### Quick Start with Docker
+### Quick Start
 
 1. Clone the repository:
 ```bash
@@ -74,21 +74,28 @@ git clone https://github.com/yourusername/AI_Log_Analyzer.git
 cd AI_Log_Analyzer
 ```
 
-2. Create environment file:
+2. Start the application:
 ```bash
-cp backend/.env.example backend/.env
-# Edit .env with your API keys
+./manage.sh start
 ```
 
-3. Start the application:
-```bash
-docker-compose up -d
-```
-
-4. Access the application:
+3. Access the application:
 - Frontend: http://localhost:3000
 - Backend API: http://localhost:8000
 - API Documentation: http://localhost:8000/docs
+
+### Management Commands
+
+```bash
+./manage.sh start              # Start all services
+./manage.sh stop               # Stop all services
+./manage.sh restart            # Restart services
+./manage.sh status             # Check status
+./manage.sh logs [service]     # View logs
+./manage.sh clean [soft|hard|full]  # Clean Docker resources
+./manage.sh backup             # Backup database
+./manage.sh restore <file>     # Restore database
+```
 
 ### Local Development
 
