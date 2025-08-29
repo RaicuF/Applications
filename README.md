@@ -174,6 +174,46 @@ docker-compose -f docker-compose.prod.yml up -d
 - Enable audit logging
 - Regularly backup database
 
+## Docker Management & Cleanup
+
+### Quick Cleanup Commands
+
+```bash
+# Stop and remove all project containers, images, and volumes
+docker-compose down -v --rmi all
+
+# Clean up all Docker resources (CAREFUL - removes everything!)
+docker system prune -a --volumes -f
+
+# Check Docker disk usage
+docker system df
+
+# Remove only this project's images
+docker images | grep loganalyzer | awk '{print $3}' | xargs docker rmi -f
+```
+
+### Common Docker Commands
+
+```bash
+# Rebuild without cache
+docker-compose build --no-cache
+
+# View logs
+docker-compose logs -f [service_name]
+
+# Enter container
+docker-compose exec backend bash
+docker-compose exec frontend sh
+
+# Restart service
+docker-compose restart backend
+
+# Check service status
+docker-compose ps
+```
+
+See [DOCKER_COMMANDS.md](./DOCKER_COMMANDS.md) for comprehensive Docker management guide.
+
 ## Testing
 
 ```bash
@@ -181,7 +221,7 @@ docker-compose -f docker-compose.prod.yml up -d
 cd backend
 pytest tests/
 
-# Frontend tests
+# Frontend tests  
 cd frontend
 npm run test
 ```
